@@ -1,6 +1,35 @@
 import { createAction, handleActions, combineActions } from 'redux-actions';
 import axios from 'axios'
 
+// user middleware
+
+export const userMiddleware = store => next => action => {
+    if (action.type.substr(0, 5) === 'USER_') {
+        const res = next(action)
+        stateToStorage(store.getState().user)
+        return res
+    }
+    return next(action)
+}
+
+const stateFromStorage = () => {
+    const stateData = sessionStorage.getItem('USER_STATE')
+    if (!stateData) {
+        return initialState
+    }
+
+    try {
+        return JSON.parse(stateData)
+    } catch (e) {
+        sessionStorage.removeItem('state')
+        return initialState
+    }
+}
+
+const stateToStorage = (state) => {
+    sessionStorage.setItem('USER_STATE', JSON.stringify(state))
+}
+
 const loginStart = createAction('USER_LOGIN_START');
 const loginSuccess = createAction('USER_LOGIN_SUCCESS');
 const loginFail = createAction('USER_LOGIN_FAIL');
@@ -78,4 +107,4 @@ export const reducer = handleActions({
         loggedIn: false,
         profile: null,
     }),
-}, initialState)
+}, stateFromStorage())

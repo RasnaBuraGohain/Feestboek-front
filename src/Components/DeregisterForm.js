@@ -41,9 +41,9 @@ const DeregisterForm = reduxForm({
     form: 'deregister',
     validate,
     onSubmit,
-    initialValues: {
-        password: "test",
-    },
+    // initialValues: {
+    //     password: "test",
+    // },
 })(DeregisterFormView)
 
 export default DeregisterForm

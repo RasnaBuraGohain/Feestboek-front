@@ -57,11 +57,11 @@ const RegisterForm = reduxForm({
     form: 'register',
     validate,
     onSubmit,
-    initialValues: {
-        code: "yes",
-        username: "olmo",
-        password: "test",
-    },
+    // initialValues: {
+    //     code: "yes",
+    //     username: "olmo",
+    //     password: "test",
+    // },
 })(RegisterFormView)
 
 export default RegisterForm
