@@ -6,23 +6,20 @@ import Link from 'Components/Link'
 import LogoutButton from 'Components/LogoutButton';
 
 const Nav = ({ dispatch, username, loggedIn }) => {
-    if (loggedIn) {
-        return (
-            <nav>
-                <Link to="/profile">Profile</Link>
-                <Link to="/about">About</Link>
-                <Link to="/party/create">Create party</Link>
-                <Link to="/party/search">Search party</Link>
-                <LogoutButton onLogout={() => dispatch(push("/"))} />
-            </nav>
-        )
-    }
+    const userLinks = loggedIn ?
+        [
+            <Link to="/profile">Profile</Link>,
+            <LogoutButton onLogout={() => dispatch(push("/"))} />,
+        ] : [
+            <Link to="/register">Register</Link>,
+            <Link to="/login">Login</Link>,
+        ]
 
     return (
         <nav>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
+            <Link to="/">Home</Link>
             <Link to="/about">About</Link>
+            {userLinks}
         </nav>
     )
 }
