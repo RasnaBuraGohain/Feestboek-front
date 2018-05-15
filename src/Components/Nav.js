@@ -10,8 +10,9 @@ const Nav = ({ dispatch, username, loggedIn }) => {
         return (
             <nav>
                 <Link to="/profile">Profile</Link>
-                {/*<Link to="/party/create">Create party</Link>
-                <Link to="/party/search">Search party</Link>*/}
+                <Link to="/about">About</Link>
+                <Link to="/party/create">Create party</Link>
+                <Link to="/party/search">Search party</Link>
                 <LogoutButton onLogout={() => dispatch(push("/"))} />
             </nav>
         )
@@ -21,6 +22,7 @@ const Nav = ({ dispatch, username, loggedIn }) => {
         <nav>
             <Link to="/register">Register</Link>
             <Link to="/login">Login</Link>
+            <Link to="/about">About</Link>
         </nav>
     )
 }

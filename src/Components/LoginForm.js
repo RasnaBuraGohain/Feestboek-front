@@ -50,8 +50,8 @@ const LoginForm = reduxForm({
     validate,
     onSubmit,
     initialValues: {
-        username: "olmo",
-        password: "test",
+        username: "rasna",
+        password: "Ras123",
     },
 })(LoginFormView)
 
