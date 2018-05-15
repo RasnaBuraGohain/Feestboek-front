@@ -5,12 +5,14 @@ import About from './Pages/About'
 import Register from './Pages/Register'
 import Login from './Pages/Login'
 import Profile from './Pages/Profile'
+import Contact from './Pages/Contact'
 
 import NotFound from './Pages/NotFound'
 
 const routes = [
     { path: '/', name: 'front', page: Front },
     { path: '/about', name: 'about', page: About },
+    { path: '/contact', name: 'contact', page: Contact },
     { path: '/register', name: 'register', page: Register },
     { path: '/login', name: 'login', page: Login },
 

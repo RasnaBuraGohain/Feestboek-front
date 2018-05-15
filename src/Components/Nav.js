@@ -19,6 +19,7 @@ const Nav = ({ dispatch, username, loggedIn }) => {
         <nav>
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
             {userLinks}
         </nav>
     )

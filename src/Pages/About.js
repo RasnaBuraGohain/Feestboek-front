@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import { addNotification } from 'store/notifications'
 
 const AboutView = ({ hello }) => (
