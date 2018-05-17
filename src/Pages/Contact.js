@@ -1,16 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addNotification } from 'store/notifications'
+import { push } from 'redux-first-routing'
+import ContactForm from 'Components/ContactForm'
 
-const ContactView = ({ callme }) => (
+const ContactView = ({ dispatch }) => (
   <main>
     <h1>The Contact page</h1>
-    <button onClick={callme}>Contact Me</button>
+    <ContactForm onContact={() => dispatch(push("/profile"))} />
   </main>
 )
 
-const mapDispatchToProps = dispatch => ({
-  callme: () => dispatch(addNotification('Call Me Maybe!')),
-})
-
-export default connect(null, mapDispatchToProps)(ContactView)
+export default connect()(ContactView)

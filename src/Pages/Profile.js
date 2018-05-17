@@ -33,6 +33,7 @@ const Profile = ({ username }) => (
 
 const mapStateToProps = state => ({
     username: state.user.profile.username,
+    email: state.user.profile.email,
 })
 
 
