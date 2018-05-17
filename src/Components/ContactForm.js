@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
-import { contact } from 'store/user'
+import { contact } from 'store/contact'
 
 
 const TextField = ({ meta, input, ...props }) => {

@@ -43,19 +43,6 @@ export const login = (username, password) => dispatch => {
         throw e
     })
 }
-const contactStart = createAction('USER_CONTACT_START');
-const contactSuccess = createAction('USER_CONTACT_SUCCESS');
-const contactFail = createAction('USER_CONTACT_FAIL');
-
-export const contact = (email, whatsup) => dispatch => {
-    dispatch(contactStart())
-    return axios.post('/api/contact', { email, whatsup }).then(response => {
-        dispatch(contactSuccess(response.data.result))
-    }).catch(e => {
-        dispatch(contactFail())
-        throw e
-    })
-}
 
 const registerStart = createAction('USER_REGISTER_START');
 const registerSuccess = createAction('USER_REGISTER_SUCCESS');
@@ -100,22 +87,23 @@ const initialState = {
 }
 
 export const reducer = handleActions({
-    [combineActions(loginStart, registerStart, contactStart)]: (state, action) => ({
+    [combineActions(loginStart, registerStart)]: (state, action) => ({
         inProgress: true,
         loggedIn: false,
         profile: null,
     }),
+
     [deregisterStart]: (state, action) => ({
         inProgress: true,
         loggedIn: false,
         profile: state.profile,
     }),
-    [combineActions(loginSuccess, registerSuccess, contactSuccess)]: (state, action) => ({
+    [combineActions(loginSuccess, registerSuccess)]: (state, action) => ({
         inProgress: false,
         loggedIn: true,
         profile: action.payload,
     }),
-    [combineActions(loginFail, registerFail, contactFail, logoutSuccess, deregisterSuccess, deregisterFail)]: (state, action) => ({
+    [combineActions(loginFail, registerFail, logoutSuccess, deregisterSuccess, deregisterFail)]: (state, action) => ({
         inProgress: false,
         loggedIn: false,
         profile: null,
