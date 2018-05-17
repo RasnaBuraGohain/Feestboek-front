@@ -51,9 +51,14 @@ const validate = ({ email, whatsup }) => {
 }
 
 const onSubmit = ({ email, whatsup }, dispatch, props) => {
-  return dispatch(contact(email, whatsup))
+  return dispatch(contact(email, whatsup)).then(() => {
+    if (props.onContact) props.onContact()
+  }).catch(error => {
+    throw new SubmissionError({
+      '_error': error.response.data.error,
+    })
+  })
 }
-
 
 const ContactForm = reduxForm({
   form: 'contact',
