@@ -1,10 +1,9 @@
 import React from 'react'
-import { Field, reduxForm, SubmissionError } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 import { contact } from 'store/contact'
 
 
 const TextField = ({ meta, input, ...props }) => {
-  console.log('meta', meta)
   return (
     <div>
       {meta.invalid ? meta.error : null}
@@ -51,23 +50,17 @@ const validate = ({ email, whatsup }) => {
 }
 
 const onSubmit = ({ email, whatsup }, dispatch, props) => {
-  return dispatch(contact(email, whatsup)).then(() => {
-    if (props.onContact) props.onContact()
-  }).catch(error => {
-    throw new SubmissionError({
-      '_error': error.response.data.error,
-    })
-  })
+  return dispatch(contact(email, whatsup))
 }
 
 const ContactForm = reduxForm({
   form: 'contact',
   validate,
   onSubmit,
-  // initialValues: {
-  //     email: "abc@gmail.com",
-  //     whatsup: "Hi ",
-  // },
+  initialValues: {
+    email: "abc@gmail.com",
+    whatsup: "Hi ",
+  },
 })(ContactFormView)
 
 export default ContactForm

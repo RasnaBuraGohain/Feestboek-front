@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import Timer from 'Components/Timer'
 import DeregisterForm from 'Components/DeregisterForm'
 
 const Profile = ({ username }) => (
@@ -24,7 +24,7 @@ const Profile = ({ username }) => (
             <li>Nikos commented on <b>HORI2ON DU T3K!</b></li>
             <li>Olmo created a new party: <b>HORI2ON DU T3K!</b></li>
         </ul>
-
+        <Timer />
         <h1>Delete account</h1>
         <p>Warning, this will permanently delete your account. Your invitation code remains invalidated.</p>
         <DeregisterForm />

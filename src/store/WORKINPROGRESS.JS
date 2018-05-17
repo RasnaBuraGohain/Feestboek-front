@@ -1,22 +1,24 @@
 import { createAction, handleActions, combineActions } from 'redux-actions';
-import axios from 'axios'
 
 const contactStart = createAction('CONTACT_CONTACT_START');
 const contactSuccess = createAction('CONTACT_CONTACT_SUCCESS');
 const contactFail = createAction('CONTACT_CONTACT_FAIL');
 
-export const contact = (email, whatsup) => dispatch => {
+export const contact = (email, whatsup) => (dispatch, getState) => {
+  const state = getState()
   dispatch(contactStart())
-  return axios.post('/api/contact', { email, whatsup }).then(response => {
-    dispatch(contactSuccess(response.data.result))
-  }).catch(e => {
+  if (state.contact.inProgress) {
     dispatch(contactFail())
-    throw e
-  })
+    return
+  }
+
+  setTimeout(() => {
+    dispatch(contactSuccess())
+  }, 5000);
 }
 
 const initialState = {
-  inProgress: true,
+  inProgress: false,
 
 }
 
