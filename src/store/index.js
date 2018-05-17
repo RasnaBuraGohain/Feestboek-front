@@ -4,6 +4,7 @@ import { createBrowserHistory, routerReducer, routerMiddleware, startListener } 
 import { reducer as userReducer, userMiddleware } from './user'
 import { reducer as notificationsReducer } from './notifications'
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const history = createBrowserHistory()
 
@@ -16,7 +17,7 @@ const rootReducer = combineReducers({
 
 const middleware = applyMiddleware(thunk, routerMiddleware(history), userMiddleware)
 
-const store = createStore(rootReducer, middleware)
+const store = createStore(rootReducer, composeWithDevTools(middleware))
 
 startListener(history, store)
 
